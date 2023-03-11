@@ -61,7 +61,7 @@ const IndexPage = ({ data }) => {
               <Link href={module.repository}>Repository</Link>
               <Link href={module.webpage}>Webpage</Link>
               {module.videos && <Link href={module.videos}>Videos</Link>}
-            </Links>
+            </Links> 
           </Module>
         ))}
       </Modules>
@@ -99,6 +99,7 @@ const Filters = styled.div`
 
 const StatusFilter = styled.select`
   margin-right: 16px;
+  aria-label: "Filter by status";
 `;
 
 const VideosFilter = styled.input.attrs({ type: "checkbox", id: "videos-filter" })`
@@ -107,42 +108,77 @@ const VideosFilter = styled.input.attrs({ type: "checkbox", id: "videos-filter" 
 
 const VideosFilterLabel = styled.label`
   font-size: 16px;
+  aria-label: "Filter by videos available";
 `;
 
 const Modules = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 16px;
   justify-content: center;
+  margin: 16px;
 `;
 
 const Module = styled.div`
-  background-color: #ffffff;
-  border-radius: 8px;
+  background-color: #fff;
+  border-radius: 16px;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
-  margin: 16px;
-  padding: 16px;
+  padding: 24px;
   width: 300px;
   transition: all 0.2s ease-in-out;
 
   &:hover {
     transform: scale(1.05);
-  }`
-  const Name = styled.div`
-   font-size: 24px; font-weight: bold; margin-bottom: 8px;`;
+  }
+`;
 
-  const Description = styled.div `font-size: 16px; margin-bottom: 8px;`;
-  
-  const Links = styled.div `display: flex; justify-content: space-between;`;
-  
-  const Link = styled.a`
+const Name = styled.div`
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+`;
+
+const Description = styled.div`
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #555;
+`;
+
+const Links = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+`;
+
+const Link = styled.a`
   color: #2f80ed;
   font-size: 14px;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
-  
+
   &:hover {
-  color: #1f65d6;
+    color: #1f65d6;
   }
-  `;
-  
+`;
+
+const Status = styled.div`
+color: ${props => {
+  switch (props.status) {
+    case 'stable':
+      return '#4CAF50';
+    case 'beta':
+      return '#FFC107';
+    case 'alpha':
+      return '#F44336';
+    default:
+      return '#9E9E9E';
+  }
+}};
+font-size: 14px;
+font-weight: bold;
+margin-top: 8px;
+`;
+
+
   export default IndexPage;
