@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { graphql } from "gatsby";
 import styled from "styled-components";
+import Layout from "./layout";
 
 const IndexPage = ({ data }) => {
   const [statusFilter, setStatusFilter] = useState("all");
@@ -29,6 +30,7 @@ const IndexPage = ({ data }) => {
   };
 
   return (
+    <Layout>
     <Container>
       <Filters>
         <StatusFilter
@@ -63,7 +65,7 @@ const IndexPage = ({ data }) => {
           </Module>
         ))}
       </Modules>
-    </Container>
+    </Container></Layout>
   );
 };
 
