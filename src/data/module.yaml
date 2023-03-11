@@ -20,7 +20,7 @@
   status: stable
   videos: ''
   webpage: http://swcarpentry.github.io/python-novice-inflammation
-  heroImage: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  heroImage: https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/psf/trademarks-faq/python-logo-monochrome.png
   id: python
 - description: 'A full introduction to C++ based on a series of slides and exercises.'
   name: HEP C++ Course
@@ -28,7 +28,7 @@
   status: stable
   videos: https://github.com/hsf-training/cpluspluscourse#-video-recordings--events
   webpage: https://github.com/hsf-training/cpluspluscourse#-getting-the-latest-pdf
-  heroImage: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  heroImage: https://cdn.icon-icons.com/icons2/3398/PNG/512/plus_logo_c_icon_214621.png
   id: hepcpp
 - description: 'Building code is hard. <code>CMake</code> makes it easier.'
   name: 'Build systems:  <code>cmake</code>'
@@ -36,7 +36,7 @@
   status: stable
   videos: ''
   webpage: https://hsf-training.github.io/hsf-training-cmake-webpage/
-  heroImage: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  heroImage: https://static-00.iconduck.com/assets.00/cmake-icon-256x256-o9nac3jq.png
   id: cmake
 - description: ''
   name: Distributed file systems and grid computing
@@ -102,7 +102,7 @@
   status: stable
   videos: https://www.youtube.com/watch?v=Qr42pEtio-Q&list=PLKZ9c4ONm-VnqD5oN2_8tXO0Yb1H_s0sj
   webpage: https://hsf-training.github.io/hsf-training-docker/index.html
-  heroImage: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  heroImage: https://www.svgrepo.com/show/333528/docker.svg
   id: docker
 - description: E.g. <code>yadage</code> and <code>reana</code>
   name: Workflows &amp; reproducibility
@@ -152,6 +152,7 @@
   status: alpha
   videos: ''
   webpage: ''
+  heroImage: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
   id: doc
 - description: <code>pythia</code>, <code>sherpa</code>, <code>madgraph</code>, etc.
   name: Event generation and MC
@@ -168,7 +169,7 @@
   status: alpha
   videos: ''
   webpage: ''
-  heroImage: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  heroImage: https://cdn.dribbble.com/users/13604/screenshots/14398521/media/4ee6402f922088eb7b6cc555f7ae0802.jpg?compress=1&resize=400x300
   id: alpaka
 - description: Introduction to the <a href="https://en.wikipedia.org/wiki/Ssh_(Secure_Shell)">Secure Shell (SSH)</a>
   name: SSH

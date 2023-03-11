@@ -108,6 +108,12 @@ const Filters = styled.div`
 
 const StatusFilter = styled.select`
   margin-right: 16px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
 `;
 
 const VideosFilter = styled.input.attrs({
@@ -115,10 +121,50 @@ const VideosFilter = styled.input.attrs({
   id: "videos-filter",
 })`
   margin-right: 8px;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+
+  &:checked {
+    background-color: #1e90ff;
+    border-color: #1e90ff;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #1e90ff;
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &:checked:before {
+    transform: translateX(7px);
+    background-color: #fff;
+  }
 `;
 
 const VideosFilterLabel = styled.label`
   font-size: 16px;
+  color: #333;
 `;
 
 const Modules = styled.div`
@@ -131,11 +177,9 @@ const Modules = styled.div`
 
 const HeroImage = styled.img`
 border-radius: 8px;
-margin-bottom: 16px;
 max-width: 100%;
 width: 100%;
-height: 250px;
-object-fit: cover;
+height: 290px;
 `;
 
   
