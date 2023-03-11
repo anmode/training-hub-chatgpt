@@ -129,13 +129,15 @@ const Modules = styled.div`
   margin: 16px;
 `;
 
- const HeroImage = styled.img`
-    border-radius: 8px;
-    margin-bottom: 16px;
-    max-width: 100%;
-    width: 100%;
-    height: 200px;
-  `;
+const HeroImage = styled.img`
+border-radius: 8px;
+margin-bottom: 16px;
+max-width: 100%;
+width: 100%;
+height: 250px;
+object-fit: cover;
+`;
+
   
   const Module = styled.div`
   display: flex;
@@ -145,6 +147,8 @@ const Modules = styled.div`
   padding: 24px;
   width: 100%;
   transition: all 0.2s ease-in-out;
+  max-height: 300px;
+  overflow: hidden;
 
   &:hover {
     transform: scale(1.05);
@@ -152,12 +156,13 @@ const Modules = styled.div`
   }
 
   @media (min-width: 768px) {
-    width: 300px;
+    width: 500px;
   }
 `;
 
+
 const ModuleImage = styled.div`
-  width: 40%;
+  width: 100%;
   margin-right: 16px;
 
   @media (max-width: 767px) {
@@ -169,6 +174,7 @@ const ModuleImage = styled.div`
 
 const ModuleContent = styled.div`
   width: 60%;
+  flex-grow: 1;n
 
   @media (max-width: 767px) {
     width: 100%;
@@ -188,8 +194,11 @@ const Description = styled.p`
 
 const Links = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
 `;
+
+
 
 const Link = styled.a`
   font-size: 16px;
