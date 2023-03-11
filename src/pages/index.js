@@ -1,26 +1,71 @@
-import React from "react"
-import { graphql } from "gatsby"
-import styled from "styled-components"
+import React, { useState } from "react";
+import { graphql } from "gatsby";
+import styled from "styled-components";
 
 const IndexPage = ({ data }) => {
-  const modules = data.allYaml.nodes
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [videosFilter, setVideosFilter] = useState(false);
+
+  const modules = data.allYaml.nodes.filter(module => {
+    // filter by status
+    if (statusFilter !== "all" && module.status !== statusFilter) {
+      return false;
+    }
+
+    // filter by videos
+    if (videosFilter && !module.videos) {
+      return false;
+    }
+
+    return true;
+  });
+
+  const handleStatusFilterChange = event => {
+    setStatusFilter(event.target.value);
+  };
+
+  const handleVideosFilterChange = event => {
+    setVideosFilter(event.target.checked);
+  };
 
   return (
     <Container>
-      {modules.map(module => (
-        <Module key={module.id}>
-          <Name dangerouslySetInnerHTML={{ __html: module.name }} />
-          <Description dangerouslySetInnerHTML={{ __html: module.description }} />
-          <Links>
-            <Link href={module.repository}>Repository</Link>
-            <Link href={module.webpage}>Webpage</Link>
-            {module.videos && <Link href={module.videos}>Videos</Link>}
-          </Links>
-        </Module>
-      ))}
+      <Filters>
+        <StatusFilter
+          value={statusFilter}
+          onChange={handleStatusFilterChange}
+        >
+          <option value="all">All</option>
+          <option value="stable">Stable</option>
+          <option value="beta">Beta</option>
+          <option value="alpha">Alpha</option>
+        </StatusFilter>
+        <VideosFilter
+          checked={videosFilter}
+          onChange={handleVideosFilterChange}
+        />
+        <VideosFilterLabel htmlFor="videos-filter">
+          Videos Available
+        </VideosFilterLabel>
+      </Filters>
+      <Modules>
+        {modules.map(module => (
+          <Module key={module.id}>
+            <Name dangerouslySetInnerHTML={{ __html: module.name }} />
+            <Description
+              dangerouslySetInnerHTML={{ __html: module.description }}
+            />
+            <Links>
+              <Link href={module.repository}>Repository</Link>
+              <Link href={module.webpage}>Webpage</Link>
+              {module.videos && <Link href={module.videos}>Videos</Link>}
+            </Links>
+          </Module>
+        ))}
+      </Modules>
     </Container>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query {
@@ -36,14 +81,37 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  font-family: "Open Sans", sans-serif;
+`;
+
+const Filters = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 16px;
+`;
+
+const StatusFilter = styled.select`
+  margin-right: 16px;
+`;
+
+const VideosFilter = styled.input.attrs({ type: "checkbox", id: "videos-filter" })`
+  margin-right: 8px;
+`;
+
+const VideosFilterLabel = styled.label`
+  font-size: 16px;
+`;
+
+const Modules = styled.div`
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  font-family: 'Open Sans', sans-serif;
-`
+`;
 
 const Module = styled.div`
   background-color: #ffffff;
@@ -56,45 +124,23 @@ const Module = styled.div`
 
   &:hover {
     transform: scale(1.05);
-  }
-`
+  }`
+  const Name = styled.div`
+   font-size: 24px; font-weight: bold; margin-bottom: 8px;`;
 
-const Name = styled.h2`
-  color: #444444;
-  font-size: 24px;
-  margin-bottom: 8px;
-`
-
-const Description = styled.p`
-  color: #666666;
-  font-size: 16px;
-  margin-bottom: 16px;
-
-  code {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    background-color: #f5f5f5;
-    padding: 2px 4px;
-    border-radius: 4px;
-  }
-`
-
-const Links = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-const Link = styled.a`
-  color: #0077cc;
-  font-size: 16px;
-  margin-bottom: 8px;
+  const Description = styled.div `font-size: 16px; margin-bottom: 8px;`;
+  
+  const Links = styled.div `display: flex; justify-content: space-between;`;
+  
+  const Link = styled.a`
+  color: #2f80ed;
+  font-size: 14px;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
-
+  
   &:hover {
-    color: #004499;
-    text-decoration: underline;
+  color: #1f65d6;
   }
-`
-
-export default IndexPage
+  `;
+  
+  export default IndexPage;
