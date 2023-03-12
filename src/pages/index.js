@@ -43,6 +43,8 @@ const IndexPage = ({ data }) => {
             <option value="alpha">Alpha</option>
           </StatusFilter>
           <VideosFilter
+            type="checkbox"
+            id="videos-filter"
             checked={videosFilter}
             onChange={handleVideosFilterChange}
           />
@@ -59,15 +61,20 @@ const IndexPage = ({ data }) => {
                 </ModuleImage>
               )}
               <ModuleContent>
+              <NameAndDescriptionContainer>
                 <Name dangerouslySetInnerHTML={{ __html: module.name }} />
                 <Description
                   dangerouslySetInnerHTML={{ __html: module.description }}
                 />
-                <Links>
-                  <Link href={module.repository}>Repository</Link>
-                  <Link href={module.webpage}>Webpage</Link>
-                  {module.videos && <Link href={module.videos}>Videos</Link>}
-                </Links>
+                  </NameAndDescriptionContainer>
+                  <Links>
+                   <Link href={module.repository}>Repository</Link>
+                   <Link href={module.webpage}>Webpage</Link>
+                        {module.videos && <Link href={module.videos}>Videos</Link>}
+                        {module.status === "Stable" && <span> </span>}
+                  <Status status={module.status}>{module.status}</Status>
+                 </Links>
+            
               </ModuleContent>
             </Module>
           ))}
@@ -181,14 +188,11 @@ max-width: 100%;
 width: 100%;
 height: 290px;
 `;
-
-  
-  const Module = styled.div`
+const Module = styled.div`
   display: flex;
   background-color: #fff;
   border-radius: 16px;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
-  padding: 24px;
   width: 100%;
   transition: all 0.2s ease-in-out;
   max-height: 300px;
@@ -204,25 +208,19 @@ height: 290px;
   }
 `;
 
-
-const ModuleImage = styled.div`
-  width: 100%;
-  margin-right: 16px;
-
-  @media (max-width: 767px) {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 16px;
-  }
+const ModuleContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
 `;
 
-const ModuleContent = styled.div`
-  width: 60%;
-  flex-grow: 1;n
-
-  @media (max-width: 767px) {
-    width: 100%;
-  }
+const NameAndDescriptionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 `;
 
 const Name = styled.h2`
@@ -234,6 +232,7 @@ const Name = styled.h2`
 const Description = styled.p`
   font-size: 16px;
   margin-bottom: 16px;
+  flex-grow: 1;
 `;
 
 const Links = styled.div`
@@ -241,8 +240,6 @@ const Links = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
-
-
 
 const Link = styled.a`
   font-size: 16px;
@@ -255,7 +252,50 @@ const Link = styled.a`
     text-decoration: underline;
   }
 `;
-    
+
+const ModuleImage = styled.div`
+width: 250px;
+height: 280px;
+  max-height: 100%;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  overflow: hidden;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-left-radius: 0;
+  }
+`;
+
+
+const STATUS_COLORS = {
+  stable: "green",
+  beta: "orange",
+  alpha: "red",
+};
+
+const Status = styled.span`
+  display: inline-flex;
+  align-items: center;
+  color: ${props => STATUS_COLORS[props.status]};
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    background-color: ${props => STATUS_COLORS[props.status]};
+  }
+`;
+
     export default IndexPage;
     
     
