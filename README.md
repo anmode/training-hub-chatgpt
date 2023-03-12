@@ -24,7 +24,8 @@
 
     ```shell
     cd training-hub/
-    npm run develop
+    npm install
+    gatsby develop
     ```
 
 3.  **Open the code and start customizing!**
